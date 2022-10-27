@@ -1,0 +1,58 @@
+package work;
+
+import work.point.Point;
+
+import java.util.ArrayList;
+
+public class Passenger {
+    private final int id;
+    private Point fromPoint;
+    private Point toPoint;
+    private final ArrayList<Point> path = new ArrayList<>();
+
+    public Passenger(int id, char fromBuilding, int fromFloor, char toBuilding, int toFloor) {
+        this.id =  id;
+        fromPoint = new Point(fromBuilding, fromFloor);
+        toPoint = new Point(toBuilding, toFloor);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Point getFromPoint() {
+        return fromPoint;
+    }
+
+    public Point getToPoint() {
+        return toPoint;
+    }
+
+    public ArrayList<Point> getPath() {
+        return path;
+    }
+
+    public void setToPoint(Point toPoint) {
+        this.toPoint = toPoint;
+    }
+
+    public void updatePath() {
+        if (isArrived()) {
+            return;
+        }
+        fromPoint = toPoint;
+        if (!path.isEmpty()) {
+            toPoint = path.get(0);
+            path.remove(0);
+        }
+    }
+
+    public Boolean isArrived() {
+        return fromPoint.equals(toPoint);
+    }
+
+    @Override
+    public String toString() {
+        return id + " " + fromPoint + " " + toPoint;
+    }
+}
