@@ -1,0 +1,34 @@
+if (simpleBase.getClass() == Variable.class) {
+            if (another.simpleBase.getClass() == Circular.class) {
+                return -1;
+            }
+            return power - another.power;
+        }
+        if (simpleBase.getClass() == Circular.class) {
+            if (another.simpleBase.getClass() == Variable.class) {
+                return 1;
+            }
+            if (((Circular) simpleBase).getName().equals("sin")) {
+                if (((Circular) another.simpleBase).getName().equals("cos")) {
+                    return -1;
+                }
+                int cmp = ((Circular) simpleBase).getParameter().compareTo(
+                           ((Circular) another.simpleBase).getParameter());
+                if (cmp == 0) {
+                    return power - another.power;
+                }
+                return cmp;
+            }
+            if (((Circular) simpleBase).getName().equals("cos")) {
+                if (((Circular) another.simpleBase).getName().equals("sin")) {
+                    return 1;
+                }
+                int cmp = ((Circular) simpleBase).getParameter().compareTo(
+                        ((Circular) another.simpleBase).getParameter());
+                if (cmp == 0) {
+                    return power - another.power;
+                }
+                return cmp;
+            }
+        }
+        return -100;
